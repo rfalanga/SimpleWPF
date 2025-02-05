@@ -108,8 +108,8 @@ jobs:
     #  run: Remove-Item -path $env:Wap_Project_Directory\GitHubActionsWorkflow.pfx
 
     # Upload the MSIX package: https://github.com/marketplace/actions/upload-a-build-artifact
-    # - name: Upload build artifacts
-    #   uses: actions/upload-artifact@v3                        # The @actions/upload-artifact@v3 action will be deprecated 11/30/2024. Need to go to version 4
-    #   with:
-    #     name: MSIX Package
-    #     path: ${{ env.Wap_Project_Directory }}\AppPackages    # At this point I'm not uploading the MSIX anywhere
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v4                        # The @actions/upload-artifact@v3 action will be deprecated 11/30/2024. Need to go to version 4
+      with:
+         name: MSIX Package
+         path: ${{ env.Wap_Project_Directory }}\AppPackages    # At this point I'm not uploading the MSIX anywhere
