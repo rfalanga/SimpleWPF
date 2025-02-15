@@ -50,7 +50,7 @@ jobs:
 
     strategy:
       matrix:
-        configuration: [Debug, Release]
+        configuration: [Release]
 
     runs-on: windows-latest  # For a list of available runner types, refer to
                              # https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idruns-on
@@ -58,7 +58,7 @@ jobs:
     env:
       Solution_Name: SimpleWPF\SimpleWPF.sln                         # Replace with your solution name, i.e. MyWpfApp.sln.
       #Test_Project_Path: your-test-project-path                 # Replace with the path to your test project, i.e. MyWpfApp.Tests\MyWpfApp.Tests.csproj.
-      #Wap_Project_Directory: your-wap-project-directory-name    # Replace with the Wap project directory relative to the solution, i.e. MyWpfApp.Package.
+      Wap_Project_Directory: SimpleWPF.Package    # Replace with the Wap project directory relative to the solution, i.e. MyWpfApp.Package. (Just winging it at the moment)
       #Wap_Project_Path: your-wap-project-path                   # Replace with the path to your Wap project, i.e. MyWpf.App.Package\MyWpfApp.Package.wapproj.
 
     steps:
@@ -108,8 +108,8 @@ jobs:
     #  run: Remove-Item -path $env:Wap_Project_Directory\GitHubActionsWorkflow.pfx
 
     # Upload the MSIX package: https://github.com/marketplace/actions/upload-a-build-artifact
-    # - name: Upload build artifacts
-    #   uses: actions/upload-artifact@v3                        # The @actions/upload-artifact@v3 action will be deprecated 11/30/2024. Need to go to version 4
-    #   with:
-    #     name: MSIX Package
-    #     path: ${{ env.Wap_Project_Directory }}\AppPackages    # At this point I'm not uploading the MSIX anywhere
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v4                        # The @actions/upload-artifact@v3 action will be deprecated 11/30/2024. Need to go to version 4
+      with:
+         name: MSIX Package
+         path: ${{ env.Wap_Project_Directory }}\AppPackages    # At this point I'm not uploading the MSIX anywhere
